@@ -1,0 +1,49 @@
+@media screen and ( max-width: 1200px )
+    .container
+        max-width: 960px
+
+    .sale
+        &-wrapper
+            grid-template-columns: 1fr
+            place-items: center
+            grid-row-gap: 30px
+        &__descr
+            text-align: center
+        &__deadline
+            justify-content: center
+    .sale__img-wrapper
+        width: 550px
+        height: 350px
+
+@media screen and ( max-width: 991px )
+    .container
+        max-width: 720px
+
+@media screen and ( max-width: 767px )
+    .container
+        max-width: 540px
+
+@media screen and ( max-width: 575px )
+    .container
+        max-width: 100%
+    .title
+        font-size: 52px
+    .sale
+        &-wrapper
+            padding-left: 5px
+            grid-template-columns: minmax(320px, 550px)
+            grid-template-rows: 215px auto
+        &__img
+            &-wrapper
+                width: 320px
+                height: auto
+        &__descr
+            padding-top: 0
+            &-title
+                font-size: 1.3rem
+            &-giveaway
+                font-size: 1.19rem
+        &__deadline
+            &-item
+                padding: 0.5rem
+                margin-right: 9px

@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    const deadline = '2021-05-09 11:30';
+    let deadline = '2021-05-03  23:30';
+    let timerId;
 
     console.log(new Date(deadline))
 
@@ -45,11 +46,38 @@ window.addEventListener('DOMContentLoaded', () => {
             hours.textContent = `${addZero(time.hours)}`;
             minutes.textContent = `${addZero(time.minutes)}`;
             seconds.textContent = `${addZero(time.seconds)}`;
+            
+            //do something then timer expires
+            if (time.total < 0) {
+                clearInterval(timerId);
+                // 
+                // days.textContent = `00`;
+                // hours.textContent = `00`;
+                // minutes.textContent = `00`;
+                // seconds.textContent = `00`;
+                // *** example ***
+                // const elem = document.createElement('div');
+                // elem.innerHTML = 'sorry time expired, try next time';
+                // const parent = document.querySelector('.sale__deadline');
+                // parent.append(elem);
+                
+                //**** automatically add 10 days then date expires ****
+                //get temp values
+                const day = new Date(endTime).getDate();
+                const year = new Date(endTime).getFullYear();
+                const month = new Date(endTime).getMonth();
+                //add 10 days to deadline
+                const newDay = day + 10;
+                //setup new deadline
+                deadline = new Date(year, month , newDay, 11, 30, 00);
+                //start new timer
+                setTimer(deadline);
+            }
         }
 
         //use setInterval to update timer every second
 
-        const timerId = setInterval(updateTimer, 1000);
+         timerId = setInterval(updateTimer, 1000);
     }
 
     //init timer
