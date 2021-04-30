@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    let deadline = '2021-05-03  23:30';
+    let deadline = '2021-05-09  23:30';
     let timerId;
 
-    console.log(new Date(deadline))
+    showDeadline(deadline);
 
     //get time difference between deadline and current time
     function getTimeDiff(time) {
@@ -70,6 +70,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 const newDay = day + 10;
                 //setup new deadline
                 deadline = new Date(year, month , newDay, 11, 30, 00);
+                //show new deadline on page
+                showDeadline(deadline);
                 //start new timer
                 setTimer(deadline);
             }
@@ -91,5 +93,37 @@ window.addEventListener('DOMContentLoaded', () => {
             return `0${num}`;
         }
         return num;
+    }
+
+
+    // **** show deadline on page ****
+    function showDeadline(deadline) {
+        //get elems from page
+        const day = document.querySelector('[data-date="day"]'),
+              dateOfMonth = document.querySelector('[data-date="date"]'),
+              month  = document.querySelector('[data-date="month"]'),
+              year = document.querySelector('[data-date="year"]'),
+              hours = document.querySelector('[data-date="hours"]'),
+              minutes = document.querySelector('[data-date="minutes"]');
+
+              
+        //form date from deadline
+        const date = new Date(deadline);
+        //get needed values from date
+        const deadlineDay = date.toLocaleString("en-en", { weekday: "long" }),  // alternative old method - days[date.getDay()] from    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            deadlineDate = date.getDate(),
+            deadlineMonth = date.toLocaleString("en-en", { month: "long" }),
+            deadlineYear = date.getFullYear(),
+            deadlineHours = date.getHours(),
+            deadlineMinutes = date.getMinutes();
+
+        //put this values in html
+        day.textContent = deadlineDay;
+        dateOfMonth.textContent = deadlineDate;
+        month.textContent = deadlineMonth;
+        year.textContent = deadlineYear;
+        hours.textContent = deadlineHours;
+        minutes.textContent = deadlineMinutes;
+
     }
 })
